@@ -26,3 +26,24 @@ const watchSassFiles = () => watch("./scss/**/*.scss", compileSass);
 
 // npx gulpというコマンドを実行した時、watchSassFilesが実行されるようにします
 exports.default = watchSassFiles;
+
+
+// gulpプラグインの読みこみ
+var gulp = require("gulp");
+
+// browser-syncのプラグインの読み込み
+var browserSync = require("browser-sync");
+
+// タスクの設定
+gulp.task("browserSyncTask", function () {
+  browserSync({
+    server: {
+      baseDir: "../20200622_Buzz397" // ルートとなるディレクトリを指定
+    }
+  });
+
+  // srcフォルダ以下のファイルを監視
+  gulp.watch("../20200622_Buzz397/**", function () {
+    browserSync.reload(); // ファイルに変更があれば同期しているブラウザをリロード
+  });
+});
