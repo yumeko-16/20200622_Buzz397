@@ -35,7 +35,7 @@ var gulp = require("gulp");
 var browserSync = require("browser-sync");
 
 // タスクの設定
-gulp.task("browserSyncTask", function () {
+gulp.task("browserSyncTask", function (done) {
   browserSync({
     server: {
       baseDir: "../20200622_Buzz397" // ルートとなるディレクトリを指定
@@ -43,7 +43,8 @@ gulp.task("browserSyncTask", function () {
   });
 
   // srcフォルダ以下のファイルを監視
-  gulp.watch("../20200622_Buzz397/**", function () {
+  gulp.watch("../20200622_Buzz397/**", function (done) {
     browserSync.reload(); // ファイルに変更があれば同期しているブラウザをリロード
+    done();
   });
 });
